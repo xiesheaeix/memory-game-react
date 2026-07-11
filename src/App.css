@@ -1,0 +1,36 @@
+.app {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  gap: 8px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.tile {
+  width: 70px;
+  height: 70px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.controls button {
+  margin: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.win {
+  color: green;
+  font-weight: bold;
+}
+
+.lose {
+  color: red;
+  font-weight: bold;
+}
