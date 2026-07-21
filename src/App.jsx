@@ -2,17 +2,26 @@
 // useState is React's tool for remembering a value between clicks.
 // (A normal variable would get wiped every time the screen redraws.)
 import { useState } from 'react'
-import './App.css'
+import './App.css';
+// imports the images used for the cards from the assets folder 
+import mike from './assets/mike.png'
+import duck from './assets/duck.png'
+import barney from './assets/barney.png'
+import gusta from './assets/gusta.png'
+import cat from './assets/cat.png'
+import spongebob from './assets/spongebob.png'
+import dog from './assets/dog.png'
+import dumb from './assets/dumb.png'
 
 // The 8 pictures used on the cards. Each one appears twice, so there are
 // 8 matching pairs = 16 cards total.
-const PICTURES = ['👻', '🎃', '😊', '🕷️', '🦇', '🧟', '🕸️', '🐍']
+const PICTURES = [gusta, mike , barney, duck, cat, spongebob, dog, dumb]
 
 // What a face-down card shows.
 const CARD_BACK = '?'
 
 // How many wrong guesses are allowed before you lose, per difficulty.
-const MAX_WRONG = { easy: 10, hard: 5 }
+const MAX_WRONG = { easy: 12, hard: 7 }
 
 //  Make a fresh, shuffled board.
 //  Returns a plain list of 16 emoji strings in random order, e.g.
@@ -144,8 +153,8 @@ function App() {
         <p>Let's Play A Game...</p>
         <div className="controls">
           {/* onClick tells React what to run when the button is clicked */}
-          <button onClick={() => chooseLevel('easy')}>Easy (10 wrong guesses)</button>
-          <button onClick={() => chooseLevel('hard')}>Hard (5 wrong guesses)</button>
+          <button onClick={() => chooseLevel('easy')}>Easy (12 wrong guesses)</button>
+          <button onClick={() => chooseLevel('hard')}>Hard (7 wrong guesses)</button>
         </div>
       </div>
     )
@@ -165,7 +174,7 @@ function App() {
             onClick={() => handleClick(idx)} // pass this card's position
           >
             {/* Show the picture if face-up, otherwise show the "?" back. */}
-            {isFaceUp(idx) ? picture : CARD_BACK}
+            {isFaceUp(idx) ? <img src={picture} alt="card" className="tile-img" /> : CARD_BACK}
           </button>
         ))}
       </div>
