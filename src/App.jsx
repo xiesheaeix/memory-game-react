@@ -149,7 +149,7 @@ function App() {
   if (!level) {
     return (
       <div className="app">
-        <h1>CONCENTRATION</h1>
+        <h1>🤪 Meme Memory 🤪</h1>
         <p>Let's Play A Game...</p>
         <div className="controls">
           {/* onClick tells React what to run when the button is clicked */}
@@ -163,7 +163,7 @@ function App() {
   // Otherwise, show the game board.
   return (
     <div className="app">
-      <h1>CONCENTRATION</h1>
+      <h1>😍 Meme Memory 😍</h1>
 
       <div className="board">
         {/* board.map() draws one button for each card in the list. */}

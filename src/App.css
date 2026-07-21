@@ -1,9 +1,15 @@
-.app {
-  font-family: sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yuyu&display=swap');
+.app { 
+  font-family: Dancing Script;
   text-align: center;
   padding: 20px;
 }
-
+h1 {
+  font-family: Yuyu;
+  text-align: center;
+  padding: 20px;
+}
 .board {
   display: grid;
   grid-template-columns: repeat(4, 70px);
@@ -23,6 +29,7 @@
   margin: 4px;
   padding: 6px 12px;
   cursor: pointer;
+  font-family: Dancing Script;
 }
 
 .win {
