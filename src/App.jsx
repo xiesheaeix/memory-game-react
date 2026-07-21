@@ -6,7 +6,7 @@ import './App.css'
 
 // The 8 pictures used on the cards. Each one appears twice, so there are
 // 8 matching pairs = 16 cards total.
-const PICTURES = ['👻', '🎃', '💀', '🕷️', '🦇', '🧟', '🕸️', '🐍']
+const PICTURES = ['👻', '🎃', '😊', '🕷️', '🦇', '🧟', '🕸️', '🐍']
 
 // What a face-down card shows.
 const CARD_BACK = '?'
