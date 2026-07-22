@@ -1,9 +1,8 @@
 
-// useState is React's tool for remembering a value between clicks.
-// (A normal variable would get wiped every time the screen redraws.)
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css';
-// imports the images used for the cards from the assets folder 
+import winSound from './assets/274182__littlerobotsoundfactory__jingle_win_synth_05.wav'
+import loseSound from './assets/535236__grizzlymittz__you-lose.mp3'
 import mike from './assets/mike.png'
 import duck from './assets/duck.png'
 import barney from './assets/barney.png'
@@ -41,9 +40,6 @@ function makeShuffledBoard() {
 }
 
 function App() {
-  //  STATE: the handful of things the game needs to remember.
-  //  Each line gives us [ theValue, aFunctionToChangeIt ].
-  //  Calling the change-function tells React to redraw the screen.
 
   // Chosen difficulty: 'easy', 'hard', or null (nothing picked yet).
   const [level, setLevel] = useState(null)
@@ -69,11 +65,6 @@ function App() {
   // so the player can't click again before they flip back over.
   const [locked, setLocked] = useState(false)
 
-
-  //  DERIVED VALUES: things we can figure out from the state above.
-  //  (We recalculate these every redraw instead of storing them.)
-
-
   // You win when all 16 cards have been matched.
   const won = matched.length === board.length
 
@@ -83,7 +74,19 @@ function App() {
   // The game is over if you've either won or lost.
   const gameOver = won || lost
 
-  //  ACTIONS: functions that change the state (and so redraw the screen).
+  // useEffect runs code after the screen redraws. 
+  useEffect(() => {
+    if (!won) return
+    const audio = new Audio(winSound)
+    audio.play()
+  }, [won])
+
+  useEffect(() => {
+    if (!lost) return
+    const audio = new Audio(loseSound)
+    audio.play()
+  }, [lost])
+
 
   // Start a brand-new game: shuffle a fresh board and clear everything.
   function startNewGame() {
