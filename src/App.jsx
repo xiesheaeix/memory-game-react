@@ -183,9 +183,17 @@ function App() {
         <p>
           Wrong Guesses : {wrongGuesses} / {MAX_WRONG[level]}
         </p>
-        {/* {condition && <p>...</p>} means "only show this if condition is true" */}
-        {won && <p className="win">You Win!</p>}
-        {lost && <p className="lose">Game Over!</p>}
+      
+        {won && (
+          <div className="neon-text-container">
+            <p className="win">You Win!</p>
+          </div>
+        )}
+        {lost && (
+          <div className="melting-text-container">
+            <p className="lose">Game Over!</p>
+          </div>
+        )}
       </div>
 
       <div className="controls">

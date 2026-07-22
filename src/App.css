@@ -5,6 +5,9 @@
   text-align: center;
   padding: 20px;
 }
+p {
+  color: black;
+}
 h1 {
   font-family: Yuyu;
   text-align: center;
@@ -12,17 +15,27 @@ h1 {
 }
 .board {
   display: grid;
-  grid-template-columns: repeat(4, 70px);
-  gap: 8px;
+  grid-template-columns: repeat(4, 120px);
+  gap: 12px;
   justify-content: center;
   margin: 20px auto;
 }
 
 .tile {
-  width: 70px;
-  height: 70px;
-  font-size: 28px;
+  width: 120px;
+  height: 120px;
+  font-size: 44px;
   cursor: pointer;
+  /* Dark slate: the card art is bright yellow/orange on transparent,
+     so a dark fill makes the subjects pop. */
+  background: #2b2d42;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+}
+
+.status {
+  color: black;
 }
 
 .controls button {
@@ -30,19 +43,122 @@ h1 {
   padding: 6px 12px;
   cursor: pointer;
   font-family: Dancing Script;
+  font-size: 1.1rem;
+  background: #2b2d42;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+}
+
+.neon-text-container {
+  padding: 20px;
 }
 
 .win {
-  color: green;
-  font-weight: bold;
+  font-size: 3rem;
+  line-height: 1.5;
+  margin: 0;
+  color: #fff;
+  text-shadow:
+    0 0 5px #ff005e,
+    0 0 10px #ff005e,
+    0 0 20px #ff005e,
+    0 0 40px #ff005e,
+    0 0 80px #ff005e;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow:
+      0 0 5px #ff005e,
+      0 0 10px #ff005e,
+      0 0 20px #ff005e,
+      0 0 40px #ff005e,
+      0 0 80px #ff005e;
+  }
+  100% {
+    text-shadow:
+      0 0 10px #00d4ff,
+      0 0 20px #00d4ff,
+      0 0 40px #00d4ff,
+      0 0 80px #00d4ff,
+      0 0 160px #00d4ff;
+  }
+}
+
+/* Wrapper so the drip can't push the page around. */
+.melting-text-container {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px 40px;
 }
 
 .lose {
-  color: red;
+  font-size: 2rem;
   font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  /* Dancing Script has tall ascenders; a roomy line box keeps the
+     background-clip area from cropping them off. */
+  line-height: 1.6;
+  animation: melt 3s infinite ease-in-out;
+  background: linear-gradient(90deg, #ff6f61, #ffbd44, #ff6f61);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lose::before,
+.lose::after {
+  content: 'Game Over!';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff6f61, #ffbd44, #ff6f61);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  z-index: -1;
+  transform: scaleY(1);
+  transform-origin: top;
+  opacity: 0.5;
+  animation: drip 3s infinite ease-in-out;
+}
+
+.lose::after {
+  filter: blur(10px);
+  opacity: 0.3;
+}
+
+/* Keyframes for melting effect */
+@keyframes melt {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes drip {
+  0%, 100% {
+    transform: scaleY(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleY(1.5);
+    opacity: 0.7;
+  }
 }
 
 .tile-img {
   width: 100%;
-  height: 100%
+  height: 100%;
+  /* Keeps each character's proportions instead of stretching to the square. */
+  object-fit: contain;
 }
